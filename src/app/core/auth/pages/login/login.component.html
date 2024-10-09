@@ -1,0 +1,44 @@
+<div class="wrapper">
+    <div class="title-text">
+      <div class="title login">Login Form</div>
+      <div class="title signup">Signup Form</div>
+    </div>
+    <div class="form-container">
+      <div class="slide-controls">
+        <input type="radio" name="slide" id="login" checked>
+        <input type="radio" name="slide" id="signup">
+        <label for="login" class="slide login" href="login">Login</label>
+        <label for="signup" class="slide signup" routerlink="/signup" (click)="onsiginupClicked()">Sign up</label>
+        <div class="slider-tab"></div>
+      </div>
+      <div class="form-inner">
+        <form [formGroup]="loginForm" class="login" (ngSubmit)="onLogin()">
+          <div class="field">
+            <input type="email" formControlName="email"   placeholder="Email Address" required>
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+              <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</small>
+              <small *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address.</small>
+            </div>
+          </div>
+  
+          <div class="field">
+            <input type="password" formControlName="password" placeholder="Password" required>
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+              <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</small>
+              <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+            </div>
+          </div>
+  
+          <div class="pass-link"><a href="#">Forgot password?</a></div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Loogin">
+          </div>
+          <div class="signup-link">Not a member? <a href="signup" (click)="onsiginupClicked()">Signup now</a></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  

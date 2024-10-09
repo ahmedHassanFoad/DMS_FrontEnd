@@ -1,0 +1,14 @@
+<nav class="navbar" *ngIf="loggedIn">
+  <div class="container">
+    <a class="logo">logo</a>
+    <ul class="nav-links">
+      <li><a [routerLink]="['/sharedDirs']" routerLinkActive="active" *ngIf="!isadminFlag" >shared</a></li>
+      <li><a [routerLink]="['/workspace']" routerLinkActive="active"  *ngIf="!isadminFlag">my workspace</a></li>
+      <li><a [routerLink]="['/adminDashBoard']" routerLinkActive="active"  *ngIf="isadminFlag">dashboard</a></li>
+      <li><a   [routerLink]="['/pannedUsers']" routerLinkActive="active"  *ngIf="isadminFlag">Locked Users</a></li>
+      <li><a routerlink="" routerLinkActive="active"  (click)="onlogOut()">logout </a></li>
+
+      <li><a class="pi pi-user" style="font-size: 2 rem"></a></li>
+    </ul>
+  </div>
+</nav>

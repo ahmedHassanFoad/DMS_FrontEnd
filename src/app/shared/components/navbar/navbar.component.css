@@ -1,0 +1,79 @@
+/* Navbar Styles */
+
+@import "primeicons/primeicons.css";
+
+.navbar {
+    background: -webkit-linear-gradient(left, #003366,#004080,#0059b3
+    , #0073e6);
+    color: #fff;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar .nav-links li {
+    display: inline;
+}
+
+.navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #003366;
+    border-radius: 4px;
+}
+
+.navbar .nav-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar .btn {
+    background:none;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    box-shadow: 0cap;
+}
+
+.navbar .btn:hover {
+   background:  #004080 ;
+}
+.logo{
+    width: 20px;
+    height: 30px;
+}

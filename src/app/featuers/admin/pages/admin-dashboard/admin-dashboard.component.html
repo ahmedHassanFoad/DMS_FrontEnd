@@ -1,0 +1,36 @@
+<h1><b>DashBoard</b></h1>
+<h2><b>Active Users</b></h2>
+<div class="dashboard">
+
+  <div class="table-container">
+    <table class="modern-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>workSpace</th>
+          <th>phone Number</th>
+          <th>action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of Users">
+          <td>{{ user.name }}</td>
+          <!-- <td><button (click)="onChooseDir(dir)" class="btn btn-primary" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">view</button></td> -->
+
+          <td>
+            <a (click)="onClickWorkSpace(user)">{{ user.workSpaceName }}</a>
+          </td>
+          <td>
+            {{ user.phoneNumber }}
+          </td>
+          <tD><i class="pi pi-lock" (click)="onClickLock(user.id)"></i></tD>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-paginator
+  [totalCount]="totalCount" 
+    [pageSize]="pageSize" 
+    [currentPage]="currentPage" 
+    (pageChange)="onPageChange($event)" ></app-paginator>
+</div>

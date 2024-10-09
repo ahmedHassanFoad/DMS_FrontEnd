@@ -1,0 +1,86 @@
+
+<div class="dashboard">
+  
+    <div class="table-container">
+      
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>NAME</th>
+            <th>TYPE</th>
+            <th>OWNER</th>
+            <th>PUBLISHED AT</th>
+            <th>VERSION</th>
+            <th>EDIT</th>
+            <th>Delete</th>
+            <th>preview</th>
+            <th>download</th>
+            <th>
+              <i class="pi pi-plus 
+              "style="font-size: 1.5rem" (click)="onChooseUpload()"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of myDocuments">
+            <td><i class="pi pi-file" style="font-size: 2 rem"></i></td>
+            <td>{{ doc.name }}</td>
+            <td>{{ doc.type }}</td>
+            <td>{{ doc.owner }}</td>
+            <td>{{ doc.date | date:"dd/MM/yy" }}</td>
+            <td>{{ doc.version }}</td>
+  
+            <td>
+              <i class="pi pi-pencil"></i>
+            </td>
+            <td>
+              <i class="pi pi-trash
+              " (click)="onClickDelete(doc)"></i>
+            </td>
+            <td>
+              <i
+                style="font-size: 24px"
+                class="pi pi-eye"
+                (click)="previewDocument(doc.id)"
+                >&#xf06e;</i
+              >
+            </td>
+            <td>
+              <i class= "pi pi-download"(click)="downloadFile(doc)"></i>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="deleteDocument">
+    <div class="overlay" *ngIf="showDeletepopUp === true">
+      <div class="content">
+        <i class=" pi pi-info-circle"></i>
+        
+        <p class="modal-header__text">Are you sure?</p>
+        <div style="margin-top: 10px; margin-left: 65px">
+          <button
+            type="submit"
+            class="btn btn-primary btn-danger"
+            style="width: 100px"
+            (click)="deleteDocument()"
+          >
+            Delete
+          </button>
+          <button
+            type="submit"
+            class="btn-close2"
+            style="width: 100px"
+            (click)="closePop()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

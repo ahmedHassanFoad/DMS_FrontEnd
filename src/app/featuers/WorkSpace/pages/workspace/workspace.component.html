@@ -1,0 +1,155 @@
+<div class="dashboard">
+
+
+  <h1><b>My Directoires</b></h1>
+  <div class="search"><input class="form-control mr-sm-2" type="text" (ngModelChange)="onSearch($event)" [(ngModel)]="searchTerm" placeholder="Search in Directories" ></div>
+
+  
+  <div class="table-container">
+    <table class="modern-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Edit</th>
+          <th>Delete</th>
+          <th>State</th>
+          <th>
+            <i
+              class="pi pi-plus"
+              style="font-size: 1.5rem"
+              (click)="showAddPopup()"
+            ></i>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dir of filterdDocuments">
+          <td (click)="onChooseDir(dir)">{{ dir.name }}</td>
+          <!-- <td><button (click)="onChooseDir(dir)" class="btn btn-primary" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">view</button></td> -->
+
+          <td>
+            <a (click)="showEditpopup(dir.id)"><i class="pi pi-pencil"></i></a>
+          </td>
+          <td>
+            <i class="pi pi-trash" (click)="onClickDelete(dir)"></i>
+          </td>
+          <td *ngIf="dir.isPublic; else privateTemplate">Public</td>
+          <ng-template #privateTemplate class="private">
+            <td>Private</td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-paginator
+  [totalCount]="totalCount" 
+    [pageSize]="pageSize" 
+    [currentPage]="currentPage" 
+    (pageChange)="onPageChange($event)">
+</app-paginator>
+</div>
+
+
+<div class="addDirectory"></div>
+<div class="overlay" *ngIf="showAddPopUp === true">
+  <div class="content">
+    <form
+      [formGroup]="addpopForm"
+      id="popForm"
+      class="active"
+      (ngSubmit)="add()"
+    >
+      <h2>Add Directory</h2>
+      <div class="input-group">
+        <label for="name">Name</label>
+        <input
+          type="test"
+          id="name"
+          formControlName="Name"
+          name="Name"
+          required
+          style="margin-left: 10px"
+        />
+      </div>
+    </form>
+
+    <div style="margin-top: 10px; margin-left: 65px">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        style="width: 100px"
+        [disabled]="addpopForm.invalid"
+        (click)="add()"
+      >
+        Add
+      </button>
+      <button
+        type="submit"
+        class="btn btn-danger"
+        style="width: 60px; margin-left: 5px"
+        (click)="closePop()"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="showEditPopUp === true">
+  <div class="content">
+    <form
+      [formGroup]="editpopForm"
+      id="popForm"
+      class="active"
+      (ngSubmit)="update()"
+    >
+      <h2>Edit Directory</h2>
+
+      <div class="input-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="Name" required [value]="editpopForm.value.Name" />
+      </div>
+
+      <div class="toggle-button">
+        <label for="isPublic">public</label>
+        <input type="checkbox" id="isPublic" formControlName="isPublic" />
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary button-edit"
+        [disabled]="editpopForm.invalid"
+      >
+        Edit
+      </button>
+      <button type="button" class="btn button-close" (click)="closePop()">
+        Close
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="deleteDirectory"></div>
+<div class="overlay" *ngIf="showDeletepopUp === true">
+  <div class="content">
+    <p>are you sure?</p>
+    <div style="margin-top: 10px; margin-left: 65px">
+      <button
+        type="submit"
+        class="btn btn-primary btn-danger"
+        style="width: 100px"
+        (click)="onDeleteDir()"
+      >
+        delete
+      </button>
+      <button
+        type="submit"
+        class="btn"
+        style="width: 60px; margin-left: 5px"
+        (click)="closePop()"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>

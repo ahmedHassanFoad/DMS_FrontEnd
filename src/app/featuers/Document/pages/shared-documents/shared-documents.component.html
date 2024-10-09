@@ -1,0 +1,59 @@
+<div class="dashboard">
+  <h1><B>shared docs</B></h1>
+    <div class="table-container">
+      
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>NAME</th>
+            <th>TYPE</th>
+            <th>OWNER</th>
+            <th>PUBLISHED AT</th>
+            <th>VERSION</th>
+            <th>EDIT</th>
+            <th>Delete</th>
+            <th>preview</th>
+            <th>download</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let doc of myDocuments">
+            <td><i class="pi pi-file" style="font-size: 2 rem"></i></td>
+            <td>{{ doc.name }}</td>
+            <td>{{ doc.type }}</td>
+            <td>{{ doc.owner }}</td>
+            <td>{{doc.date | date:"dd/MM/yy"}}</td>
+            <td>{{ doc.version }}</td>
+  
+            <td>
+              <a><i class="pi pi-pencil"></i></a>
+            </td>
+            <td>
+              <i class="pi pi-trash
+              " ></i>
+            </td>
+            <td>
+              <i
+                style="font-size: 24px"
+                class="pi pi-eye"
+                (click)="previewDocument(doc.id)"
+                >&#xf06e;</i
+              >
+            </td>
+            <td>
+              <i class= "pi pi-download" (click)="downloadFile(doc)"></i>
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-paginator
+    [totalCount]="totalCount" 
+      [pageSize]="pageSize" 
+      [currentPage]="currentPage" 
+      (pageChange)="onPageChange($event)">
+  </app-paginator>
+  </div>

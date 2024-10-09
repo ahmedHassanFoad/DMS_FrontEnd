@@ -1,0 +1,41 @@
+<div class="dashboard">
+  <h1><b>Shared Directoires</b></h1>
+    <div class="table-container">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>State</th>
+            <th>
+             
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dir of SharedDirs">
+            <td (click)="onChooseDir(dir)">{{ dir.name }}</td>
+            <!-- <td><button (click)="onChooseDir(dir)" class="btn btn-primary" style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">view</button></td> -->
+  
+            <td>
+              <a ></a>
+            </td>
+            <td>
+              <i ></i>
+            </td>
+            <td *ngIf="dir.isPublic; else privateTemplate">Public</td>
+            <ng-template #privateTemplate class="private">
+              <td>Private</td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-paginator
+    [totalCount]="totalCount" 
+      [pageSize]="pageSize" 
+      [currentPage]="currentPage" 
+      (pageChange)="onPageChange($event)">
+  </app-paginator>
+  </div>

@@ -1,0 +1,76 @@
+<div class="wrapper">
+  <div class="title-text">
+    <div class="title signup">Signup Form</div>
+  </div>
+  <div class="form-container">
+    <div class="slide-controls">
+      <input type="radio" name="slide" id="login">
+      <input type="radio" name="slide" id="signup" checked>
+      <label for="login" class="slide login" (click)="onChooseLogin()">Login</label>
+      <label for="signup" class="slide signup" routerLink="signup">Sign up</label>
+      <div class="slider-tab"></div>
+    </div>
+    <div class="form-inner">
+      <!-- Signup Form -->
+      <form #signupForm="ngForm" (ngSubmit)="onSignup(signupForm)">
+        <!-- Full Name -->
+        <div class="field">
+          <input type="text" name="name" [(ngModel)]="signupObj.name" #name="ngModel" placeholder="Full Name" required>
+          <div *ngIf="name.invalid && name.touched" class="error-message">
+            <small *ngIf="name.errors?.['required']">Full Name is required.</small>
+          </div>
+        </div>
+
+        <!-- Workspace Name -->
+        <div class="field">
+          <input type="text" name="workspace" [(ngModel)]="signupObj.workSpaceName" #workspace="ngModel" placeholder="Workspace Name" required>
+          <div *ngIf="workspace.invalid && workspace.touched" class="error-message">
+            <small *ngIf="workspace.errors?.['required']">Workspace Name is required.</small>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+          <input type="email" name="email" [(ngModel)]="signupObj.email" #email="ngModel" placeholder="Email Address" required email>
+          <div *ngIf="email.invalid && email.touched" class="error-message">
+            <small *ngIf="email.errors?.['required']">Email is required.</small>
+            <small *ngIf="email.errors?.['email']">Enter a valid email address.</small>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <input type="password" name="password" [(ngModel)]="signupObj.password" #password="ngModel" placeholder="Password" required minlength="6">
+          <div *ngIf="password.invalid && password.touched" class="error-message">
+            <small *ngIf="password.errors?.['required']">Password is required.</small>
+            <small *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</small>
+          </div>
+        </div>
+
+        <!-- NID -->
+        <div class="field">
+          <input type="text" name="nid" [(ngModel)]="signupObj.nid" #nid="ngModel" placeholder="NID (14 digits)" pattern="\\d{14}" maxlength="14" required>
+          <div *ngIf="nid.invalid && nid.touched" class="error-message">
+            <small *ngIf="nid.errors?.['required']">NID is required.</small>
+            <small *ngIf="nid.errors?.['pattern']">NID must be exactly 14 digits.</small>
+          </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="field">
+          <input type="text" name="phone" [(ngModel)]="signupObj.phoneNumber" #phone="ngModel" placeholder="Phone Number (12 digits)" pattern="\\d{12}" maxlength="12" required>
+          <div *ngIf="phone.invalid && phone.touched" class="error-message">
+            <small *ngIf="phone.errors?.['required']">Phone Number is required.</small>
+            <small *ngIf="phone.errors?.['pattern']">Phone Number must be exactly 11 digits.</small>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="field btn">
+          <div class="btn-layer"></div>
+          <input type="submit" value="Signup" [disabled]="signupForm.invalid">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
